@@ -40,7 +40,7 @@ public class RegistrationTest {
         wd.findElement(By.name("city")).sendKeys("testCity");
         wd.findElement(By.name("email")).click();
         wd.findElement(By.name("email")).clear();
-        wd.findElement(By.name("email")).sendKeys("test@gmail.com");
+        wd.findElement(By.name("email")).sendKeys("test667@gmail.com");
         wd.findElement(By.name("phone")).click();
         wd.findElement(By.name("phone")).clear();
         wd.findElement(By.name("phone")).sendKeys("111");
@@ -51,6 +51,15 @@ public class RegistrationTest {
         wd.findElement(By.name("confirmed_password")).clear();
         wd.findElement(By.name("confirmed_password")).sendKeys("111");
         wd.findElement(By.name("create_account")).click();
+        wd.findElement(By.linkText("Logout")).click();
+        wd.findElement(By.name("email")).click();
+        wd.findElement(By.name("email")).clear();
+        wd.findElement(By.name("email")).sendKeys("test667@gmail.com");
+        wd.findElement(By.name("password")).click();
+        wd.findElement(By.name("password")).clear();
+        wd.findElement(By.name("password")).sendKeys("111");
+        wd.findElement(By.name("login")).click();
+        wd.findElement(By.linkText("Logout")).click();
     }
 
     private boolean isElementPresent(By by) {
