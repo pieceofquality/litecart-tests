@@ -1,28 +1,15 @@
-package net.litecart.selenium.tests;
+package net.litecart.selenium.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
+public class BuyerHelper extends HelperBase{
 
-public class RegistrationTest {
-
-    private WebDriver wd;
-
-    @BeforeMethod
-    public void start() {
-        wd = new ChromeDriver();
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    public BuyerHelper(WebDriver wd) {
+        super(wd);
     }
 
-    @Test
-    public void testRegistration(){
-        wd.get("http://litecart/en/create_account");
+    public void fillBuyerRegistrationForm() {
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
         wd.findElement(By.name("firstname")).sendKeys("Kirill");
@@ -58,23 +45,17 @@ public class RegistrationTest {
         wd.findElement(By.name("password")).click();
         wd.findElement(By.name("password")).clear();
         wd.findElement(By.name("password")).sendKeys("111");
-        wd.findElement(By.name("login")).click();
+    }
+
+    public void buyerLogOut() {
         wd.findElement(By.linkText("Logout")).click();
     }
 
-    private boolean isElementPresent(By by) {
-        try {
-            wd.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+    public void submitBuyerRegistration() {
+        wd.findElement(By.name("login")).click();
     }
 
-
-    @AfterMethod
-    public void stop() {
-        wd.quit();
-        wd = null;
+    public void initBuyerRegistration() {
+        wd.findElement(By.linkText("New customers click here")).click();
     }
 }
