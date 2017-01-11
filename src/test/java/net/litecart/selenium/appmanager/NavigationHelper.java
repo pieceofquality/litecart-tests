@@ -57,4 +57,15 @@ public class NavigationHelper extends HelperBase{
     public void gotoBuyerRegistrationPage() {
         wd.get("http://litecart/en/create_account");
     }
+
+    public void gotoCatalogPage() { wd.get("http://litecart/admin/?app=catalog&doc=catalog");
+    }
+
+    public void gotoInformationTabProduct() {
+        wd.findElement(By.linkText("Information")).click();
+    }
+
+    public void gotoPricesTabProduct() {
+        wd.findElement(By.linkText("Prices")).click();
+    }
 }

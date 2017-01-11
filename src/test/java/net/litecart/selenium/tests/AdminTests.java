@@ -41,7 +41,16 @@ public class AdminTests extends TestBase{
     //    Exercise #12: Product Creation
     @Test
     public void testProductCreation(){
-
+        app.getNavigationHelper().gotoAdminAuthPage();
+        app.getSessionHelper().login("admin", "admin");
+        app.getNavigationHelper().gotoCatalogPage();
+        app.getProductHelper().initProductCreation();
+        app.getProductHelper().fillGeneralTabProduct();
+        app.getNavigationHelper().gotoInformationTabProduct();
+        app.getProductHelper().fillInformationTabProduct();
+        app.getNavigationHelper().gotoPricesTabProduct();
+        app.getProductHelper().fillPricesTabProduct();
+        app.getProductHelper().submitProductCreation();
     }
 
 

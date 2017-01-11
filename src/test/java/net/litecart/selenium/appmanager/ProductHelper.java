@@ -113,4 +113,24 @@ public class ProductHelper extends HelperBase {
         assertEquals(campaignPriceProductsPage, campaignPriceElementProductPage.getText());
     }
 
+    public void initProductCreation() {
+        click(By.linkText("Add New Product"));
+    }
+
+    public void fillGeneralTabProduct() {
+        type(By.name("name[en]"), "test_product");
+        type(By.name("code"), "test_code");
+    }
+
+    public void fillInformationTabProduct() {
+        type(By.name("description[en]"), "test_description");
+    }
+
+    public void fillPricesTabProduct() {
+        type(By.name("purchase_price"), "100");
+    }
+
+    public void submitProductCreation() {
+        click(By.name("save"));
+    }
 }
