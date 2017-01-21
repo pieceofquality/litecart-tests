@@ -53,5 +53,15 @@ public class AdminTests extends TestBase{
         app.getProductHelper().submitProductCreation();
     }
 
+    // Exercise #14: Links
+    @Test
+    public void testLinkOpening(){
+        app.getNavigationHelper().gotoAdminAuthPage();
+        app.getSessionHelper().login("admin", "admin");
+        app.getNavigationHelper().gotoCountriesPage();
+        app.getAdminMenuHelper().initCountryCreation();
+        app.getAdminMenuHelper().checkCountryCodePagePresence();
+    }
 
+    // Exercise #17: Console logs
 }

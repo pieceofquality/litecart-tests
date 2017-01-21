@@ -30,8 +30,14 @@ public class BuyerTests extends TestBase {
         app.getBuyerHelper().buyerLogOut();
     }
 
-
-
+//     Exercise #13: Basket waiting
+    @Test
+    public void testBasketWaiting(){
+        app.getNavigationHelper().gotoProductsPage();
+        app.getProductHelper().addProductsToBasket();
+        app.getNavigationHelper().gotoCheckoutPage();
+        app.getProductHelper().removeProductsFromBasket();
+}
 
 
 }

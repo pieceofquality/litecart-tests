@@ -58,4 +58,12 @@ public class AdminMenuHelper extends HelperBase {
         List<String> geoZonesNames = getElementsTexts(elems);
         Assert.assertEquals(true,isSorted(geoZonesNames));
     }
+
+    public void initCountryCreation() {
+        click(By.linkText(" Add New Country"));
+    }
+
+    public void checkCountryCodePagePresence() {
+        click(By.cssSelector(".fa .fa-external-link"));
+    }
 }

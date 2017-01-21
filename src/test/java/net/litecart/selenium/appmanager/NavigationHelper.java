@@ -68,4 +68,8 @@ public class NavigationHelper extends HelperBase{
     public void gotoPricesTabProduct() {
         wd.findElement(By.linkText("Prices")).click();
     }
+
+    public void gotoCheckoutPage() {
+        wd.findElement(By.cssSelector("#cart .link")).click();
+    }
 }
