@@ -3,15 +3,20 @@ package net.litecart.selenium.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class AdminMenuHelper extends HelperBase {
+
+    WebDriverWait wait = new WebDriverWait(wd, 5/*seconds*/);
 
     public AdminMenuHelper(WebDriver wd) {
         super(wd);
@@ -60,10 +65,44 @@ public class AdminMenuHelper extends HelperBase {
     }
 
     public void initCountryCreation() {
-        click(By.linkText(" Add New Country"));
+        click(By.cssSelector(".button"));
     }
 
-    public void checkCountryCodePagePresence() {
-        click(By.cssSelector(".fa .fa-external-link"));
+    public void checkCountryPageExternalLinksPresence() throws InterruptedException {
+
+        List<WebElement> links = wd.findElements(By.cssSelector("i.fa-external-link"));
+        for (WebElement link : links) {
+            String mainWindow = wd.getWindowHandle();
+            Set<String> oldWindows = wd.getWindowHandles();
+            link.click();
+            Thread.sleep(5000);
+//            Set <String> newWindows = wd.getWindowHandles();
+//            newWindows.remove(mainWindow);
+//            String[] newWindows = newWindows.toArray();
+            String newWindow = wait.until(thereIsWindowOtherThan(oldWindows));
+            wd.switchTo().window(newWindow);
+            wd.close();
+            wd.switchTo().window(mainWindow);
+        }
+    }
+
+    public ExpectedCondition<String> thereIsWindowOtherThan(Set<String> oldWindows) {
+        return new ExpectedCondition<String>() {
+            public String apply(WebDriver wd) {
+                Set<String> handles = wd.getWindowHandles();
+                handles.removeAll(oldWindows);
+                return handles.size() > 0 ? handles.iterator().next() : null;
+
+            }
+        };
+    }
+
+    public void checkAllCheckboxes() {
+        List<WebElement> els = wd.findElements(By.xpath("//input[@type='checkbox']"));
+        for ( WebElement el : els ) {
+            if ( !el.isSelected() ) {
+                el.click();
+            }
+        }
     }
 }

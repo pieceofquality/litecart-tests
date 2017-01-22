@@ -55,12 +55,12 @@ public class AdminTests extends TestBase{
 
     // Exercise #14: Links
     @Test
-    public void testLinkOpening(){
+    public void testLinkOpening() throws InterruptedException {
         app.getNavigationHelper().gotoAdminAuthPage();
         app.getSessionHelper().login("admin", "admin");
         app.getNavigationHelper().gotoCountriesPage();
         app.getAdminMenuHelper().initCountryCreation();
-        app.getAdminMenuHelper().checkCountryCodePagePresence();
+        app.getAdminMenuHelper().checkCountryPageExternalLinksPresence();
     }
 
     // Exercise #17: Console logs
