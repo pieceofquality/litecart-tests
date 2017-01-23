@@ -72,4 +72,8 @@ public class NavigationHelper extends HelperBase{
     public void gotoCheckoutPage() {
         wd.findElement(By.cssSelector("#cart .link")).click();
     }
+
+    public void gotoRubberDucksCategoryPage() {
+        wd.get("http://litecart/admin/?app=catalog&doc=catalog&category_id=1");
+    }
 }

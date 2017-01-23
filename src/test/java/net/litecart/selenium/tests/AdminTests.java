@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 public class AdminTests extends TestBase{
 
 
+
     //Exercise #3: Admin Authorization
     @Test
     public void testLogin(){
@@ -64,4 +65,13 @@ public class AdminTests extends TestBase{
     }
 
     // Exercise #17: Console logs
+
+    @Test
+    public void testLogging() throws InterruptedException {
+        app.getNavigationHelper().gotoAdminAuthPage();
+        app.getSessionHelper().login("admin", "admin");
+        app.getNavigationHelper().gotoRubberDucksCategoryPage();
+        app.getAdminMenuHelper().openAllRubberDuckProducts();
+
+    }
 }
