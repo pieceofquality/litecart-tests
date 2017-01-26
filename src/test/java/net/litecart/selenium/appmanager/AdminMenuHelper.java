@@ -3,7 +3,6 @@ package net.litecart.selenium.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -77,6 +76,9 @@ public class AdminMenuHelper extends HelperBase {
             Set<String> oldWindows = wd.getWindowHandles();
             link.click();
             Thread.sleep(5000);
+//            Set <String> newWindows = wd.getWindowHandles();
+//            newWindows.remove(mainWindow);
+//            String[] newWindows = newWindows.toArray();
             String newWindow = wait.until(thereIsWindowOtherThan(oldWindows));
             wd.switchTo().window(newWindow);
             wd.close();
@@ -101,18 +103,6 @@ public class AdminMenuHelper extends HelperBase {
             if ( !el.isSelected() ) {
                 el.click();
             }
-        }
-    }
-
-    public void openAllRubberDuckProducts() {
-        List<WebElement> els = wd.findElements(By.cssSelector("td:nth-of-type(3) > a"));
-        for (int i = 0; i<els.size();i++) {
-            els.get(i).click();
-            for (LogEntry l : wd.manage().logs().get("browser").getAll()) {
-                System.out.println(l);
-            }
-            wd.navigate().back();
-            els= wd.findElements(By.cssSelector("td:nth-of-type(3) > a"));
         }
     }
 }
