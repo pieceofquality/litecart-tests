@@ -14,26 +14,21 @@ public class BasketPage extends AbstractPage{
     @FindBy(css = "td.item")
     List<WebElement> products;
 
-    public BasketPage(WebDriver driver) {
-        super(driver);
+    public BasketPage(WebDriver wd) {
+        super(wd);
     }
 
     public void removeProduct(){
-        driver.findElement(By.name("remove_cart_item")).click();
-    }
-
-    public int countProducts(){
-        return products.size();
+        wd.findElement(By.name("remove_cart_item")).click();
     }
 
     public void waitForCountProductsToBe(int count){
-        WebDriverWait wait = new WebDriverWait(driver,5);
-        //wait.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(table)));
+        WebDriverWait wait = new WebDriverWait(wd,5);
         wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("td.item"), count));
     }
     @Override
     public String getUrl() {
-        return "http://litecart.resscode.org.ua/en/checkout";
+        return "http://litecart/en/checkout";
     }
 
 }

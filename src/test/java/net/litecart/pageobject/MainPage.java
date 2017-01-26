@@ -16,24 +16,24 @@ public class MainPage extends AbstractPage{
     @FindBy(css = "#box-most-popular a.link")
     List<WebElement> popularProducts;
     
-    public MainPage(WebDriver driver) {
-        super(driver);
-        driver.get(getUrl());
+    public MainPage(WebDriver wd) {
+        super(wd);
+        wd.get(getUrl());
     }
 
     public List<String> PopularProductsUrls(){
         return getListOfUrls(popularProducts);
     }
 
-    public static List<String> getListOfUrls(List<WebElement> elems){
+    public static List<String> getListOfUrls(List<WebElement> els){
         List<String> urls = new ArrayList();
-        elems.forEach(p->urls.add(p.getAttribute("href")));
+        els.forEach(p->urls.add(p.getAttribute("href")));
         return urls;
     }
     
     @Override
     public String getUrl() {
-        return "http://litecart.resscode.org.ua/en/";
+        return "http://litecart/en/";
     }
     
 }

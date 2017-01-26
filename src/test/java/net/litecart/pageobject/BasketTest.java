@@ -8,23 +8,21 @@ public class BasketTest extends TestBase{
 
     @Test
     public void CartComplexTest() {
-        List<String> productUrls =new MainPage(driver).PopularProductsUrls();
-        BasketWidget basketWidget = new BasketWidget(driver);
-        int totalCountProducts = 3;
+        List<String> productUrls = new MainPage(wd).PopularProductsUrls();
+        BasketWidget basketWidget = new BasketWidget(wd);
+        int n = 3;
 
-        //add products
-        for (int countProducts = 1; countProducts <= totalCountProducts; countProducts++){
-            ProductPage productPage = new ProductPage(driver, productUrls.get(countProducts));
+        for (int i = 1; i <= n; i++){
+            ProductPage productPage = new ProductPage(wd, productUrls.get(i));
             productPage.addToCart();
-            basketWidget.waitForCountUpdateTo(countProducts);
+            basketWidget.waitForCountUpdateTo(i);
         }
 
         BasketPage basketPage = basketWidget.openCart();
 
-        //remove products
-        for (int countProducts = totalCountProducts; countProducts >= 0; --countProducts){
+        for (int i = n; i >= 0; --i){
             basketPage.removeProduct();
-            basketPage.waitForCountProductsToBe(countProducts);
+            basketPage.waitForCountProductsToBe(i);
         }
     }
 }

@@ -19,9 +19,9 @@ public class BasketWidget extends AbstractPageComponent{
     
     private final WebDriverWait wait;
     
-    public BasketWidget(WebDriver driver) {
-        super(driver);
-        wait = new WebDriverWait(driver, 5);
+    public BasketWidget(WebDriver wd) {
+        super(wd);
+        wait = new WebDriverWait(wd, 5);
     }
     
     public int countProducts(){
@@ -29,7 +29,7 @@ public class BasketWidget extends AbstractPageComponent{
     }
     public BasketPage openCart(){
         checkout.click();
-        return new BasketPage(driver);
+        return new BasketPage(wd);
     }
     public void waitForCountUpdateTo(int value){
         wait.until(ExpectedConditions.textToBePresentInElement(countProducts, String.valueOf(value)));

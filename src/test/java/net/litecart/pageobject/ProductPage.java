@@ -17,10 +17,10 @@ public class ProductPage extends AbstractPage{
 
     private final String url;
 
-    public ProductPage(WebDriver driver, String url){
-        super(driver);
+    public ProductPage(WebDriver wd, String url){
+        super(wd);
         this.url = url;
-        driver.get(url);
+        wd.get(url);
     }
 
     public boolean selectSizeIfPresent(int index){

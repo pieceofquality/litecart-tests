@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    protected WebDriver driver;
+    protected WebDriver wd;
 
     public static WebDriver getDriver(){
         WebDriver driver = new ChromeDriver();
@@ -17,13 +17,13 @@ public class TestBase {
     }
     @Before
     public void start(){
-        driver = getDriver();
+        wd = getDriver();
     }
 
 
     @After
     public void finish(){
-        driver.quit();
-        driver = null;
+        wd.quit();
+        wd = null;
     }
 }
