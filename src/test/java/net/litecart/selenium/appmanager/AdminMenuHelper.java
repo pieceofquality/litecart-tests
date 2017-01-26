@@ -41,7 +41,7 @@ public class AdminMenuHelper extends HelperBase {
         int menuItemsCounter = wd.findElements(By.id("app-")).size();
         for (int i = 1; i < menuItemsCounter; i++) {
             verifyMenuItemHeader(By.cssSelector("[id=app-]:nth-of-type(" + i + ")"));
-            List<WebElement> subMenuItems = wd.findElements(By.cssSelector("[id^=doc-]"));
+            List<WebElement> subMenuItems = wd.findElements(By.cssSelector("[id^='doc-']"));
             if (subMenuItems.size() > 0) {
                 List<String> subMenuIds = getListOfIds(subMenuItems);
                 subMenuIds.forEach((id) -> verifyMenuItemHeader(By.id(id))
